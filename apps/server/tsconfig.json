@@ -4,6 +4,12 @@
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@graphic/types": ["../../packages/types/src/schemas/index.ts"],
+      "@graphic/types/*": ["../../packages/types/src/*"],
+      "@graphic/services/*": ["./app/services/*"]
+    },
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -39,6 +45,6 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   }
 }
