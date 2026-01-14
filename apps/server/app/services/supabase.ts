@@ -1,4 +1,3 @@
-import type { User } from "@graphic/types";
 import { createClient } from "@supabase/supabase-js";
 import type { AuthResponse } from "@supabase/supabase-js";
 

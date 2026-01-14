@@ -10,7 +10,7 @@ export const userSignUp = async (req: Request, res: Response) => {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        error: "Email and password are required",
+        error: "Email and password are required.",
       });
     }
 
@@ -24,6 +24,7 @@ export const userSignUp = async (req: Request, res: Response) => {
     }
 
     res.status(200).json({ success: true, data: data.data });
+    console.log("Successfully created new user.");
   } catch (error) {
     res.status(400).json({
       success: false,

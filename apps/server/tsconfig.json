@@ -8,7 +8,8 @@
     "paths": {
       "@graphic/types": ["../../packages/types/src/schemas/index.ts"],
       "@graphic/types/*": ["../../packages/types/src/*"],
-      "@graphic/services/*": ["./app/services/*"]
+      "@graphic/services/*": ["./app/services/*"],
+      "@graphic/routes": ["./app/routes/index.ts"]
     },
 
     // Environment Settings
