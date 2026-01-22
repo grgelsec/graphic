@@ -1,4 +1,14 @@
 {
+  "name": "graphic",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --prefix apps/client",
+    "dev:server": "npm run dev --prefix apps/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",
     "@types/express": "^5.0.6",
