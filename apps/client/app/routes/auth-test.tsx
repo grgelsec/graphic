@@ -1,29 +1,44 @@
-import { useState } from "react"
-import type { Route } from "./+types/auth-test"
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
+import { useState } from "react";
+import type { Route } from "./+types/auth-test";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card"
+} from "~/components/ui/card";
+import { signIn } from "~/services/supabase";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Auth Test" }]
+  return [{ title: "Auth Test" }];
 }
 
 export default function AuthTest() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Add your Supabase sign in code here
-    console.log("Sign in attempt:", { email, password })
-  }
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+
+    const { data, error } = await signIn(email, password);
+
+    setIsLoading(false);
+
+    if (error) {
+      setError(error.message);
+    }
+
+    setEmail("");
+    setPassword("");
+    console.log(data);
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
@@ -56,12 +71,13 @@ export default function AuthTest() {
                 required
               />
             </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
             <Button type="submit" className="w-full">
-              Sign In
+              {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

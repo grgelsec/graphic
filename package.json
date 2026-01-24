@@ -1,18 +1,14 @@
 {
   "name": "graphic",
   "private": true,
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "dev:client": "npm run dev --prefix apps/client",
-    "dev:server": "npm run dev --prefix apps/server"
+    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\"",
+    "dev:client": "npm run dev -w client",
+    "dev:server": "npm run dev -w server"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.89.0",
-    "@types/express": "^5.0.6",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "concurrently": "^9.1.2",
+    "supabase": "^2.72.8"
   }
 }
